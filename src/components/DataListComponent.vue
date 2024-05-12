@@ -1,5 +1,5 @@
 <template>
-  <h1>hello{{ name }}</h1>
+  <h1 class="text-amber-600">hello{{ name }}</h1>
 </template>
 
 <script lang="ts">
