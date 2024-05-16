@@ -32,7 +32,7 @@
       </button>
     </div>
 
-    <div class="grid grid-cols-2 gap-4">
+    <div class="grid grid-cols-2 gap-4 grid-rows-1">
       <div>
         <p class="text-blue-600"><small>нравится:</small></p>
         <div class="flex w-full rounded c-shadow-blue-1 p-2 h-auto max-h-[300px] overflow-y-scroll">
@@ -41,7 +41,7 @@
               <div class="flex items-center">
                 <div>
                   <p>{{item.title}}:</p>
-                  <p><small>{{item.body}}</small></p>
+                  <p>{{item.id }}: <small>{{item.body}}</small></p>
                 </div>
                 <div class="inline-flex me-0 ms-auto">
                   <button class="bg-red-500 p-1 text-white rounded" @click="itemMoveList(item.id, VisibleEnum.LOCAL)">
@@ -61,7 +61,7 @@
               <div class="flex items-center">
                 <div>
                   <p>{{item.title}}:</p>
-                  <p><small>{{item.body}}</small></p>
+                  <p>{{item.id }}: <small>{{item.body}}</small></p>
                 </div>
                 <div class="inline-flex me-0 ms-auto">
                   <button class="bg-red-500 p-1 text-white rounded" @click="itemMoveList(item.id, VisibleEnum.LOCAL)">
@@ -126,7 +126,11 @@ export default defineComponent({
       const lastIdPostList = postList.value[postList.value.length - 1].id;
       if(list.value.local.find((item)=> item.id === lastIdPostList)) {
         state.loaderGet = true;
-        await getPostList(lastIdPostList)
+        const result = await getPostList(lastIdPostList)
+        if(result) {
+          state.activeId = state.activeId - result
+          console.error('dataList end')
+        }
         state.loaderGet = false;
       }
     }

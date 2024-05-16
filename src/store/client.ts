@@ -10,17 +10,24 @@ export const dataListStore = defineStore('dataListStore', ()=>{
     const getPostList = async (postId?: number)=> {
         try {
             const data = await api().getData(postId)
-             data.map((index)=> {
-                 postList.value.push({
-                    id: index.id,
-                    userId: index.userId,
-                    title: index.title,
-                    body: index.body,
-                    isVisible: VisibleEnum.LOCAL,
+            if(data.length === 0) {
+                return 5
+            } else {
+                data.map((index)=> {
+                    postList.value.push({
+                        id: index.id,
+                        userId: index.userId,
+                        title: index.title,
+                        body: index.body,
+                        isVisible: VisibleEnum.LOCAL,
+                    })
                 })
-            })
+            }
+            if (data.length < 5) {
+                return data.length
+            }
         } catch (error){
-            console.log(error)
+            console.error(error)
         }
 
     }
