@@ -4,7 +4,7 @@
 
 <script>
 import SvgIcon from '@jamescoyle/vue-icon';
-import { mdiArrowUp } from '@mdi/js';
+import { mdiChevronDoubleRight } from '@mdi/js';
 
 export default {
   name: "my-component",
@@ -13,7 +13,7 @@ export default {
   },
   data() {
     return {
-      path: mdiArrowUp,
+      path: mdiChevronDoubleRight,
     }
   }
 }

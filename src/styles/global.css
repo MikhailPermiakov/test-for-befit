@@ -17,6 +17,10 @@
   padding: 4px 8px;
 }
 
+.c-scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+}
+
 .c-shadow-gray-1 {
   box-shadow: 0 0 4px grey;
 }

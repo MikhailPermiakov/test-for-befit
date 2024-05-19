@@ -4,7 +4,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import DataListComponent from "@/components/DataListComponent.vue";
+import DataListComponent from "@/pages/post-list-page.vue";
 
 export default defineComponent({
   name: 'App',
@@ -13,5 +13,5 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-@import "@/assets/global";
+@import "@/styles/global";
 </style>
