@@ -62,7 +62,11 @@ export default defineComponent({
       } else {
         state.pages = 1
       }
-      if(state.activePage === 1) createPageDisplayList()
+      if(state.activePage > state.pages) {
+        state.activePage = state.pages;
+        createPageDisplayList();
+      }
+      if(state.activePage === 1 || state.activePage === state.pages) createPageDisplayList();
     });
 
     const createPageDisplayList = ()=> {
