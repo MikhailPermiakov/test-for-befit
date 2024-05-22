@@ -7,7 +7,7 @@ import SvgIcon from '@jamescoyle/vue-icon';
 import { mdiThumbDownOutline } from '@mdi/js';
 
 export default {
-  name: "my-component",
+  name: "icon-thumb-down-outline",
   components: {
     SvgIcon
   },

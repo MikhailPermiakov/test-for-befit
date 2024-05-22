@@ -7,7 +7,7 @@ import SvgIcon from '@jamescoyle/vue-icon';
 import { mdiDotsHorizontal } from '@mdi/js';
 
 export default {
-  name: "my-component",
+  name: "icon-dots-horizontal",
   components: {
     SvgIcon
   },

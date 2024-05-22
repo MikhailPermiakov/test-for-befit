@@ -1,39 +1,44 @@
 <template>
   <div class="flex items-center justify-center">
-    <button class="bg-blue-400 p-1 text-white rounded m-2" @click="moveStart">
-      <IconChevronDoubleLeft />
-    </button>
-    <button class="bg-blue-400 p-1 text-white rounded m-2" @click="moveLeft">
-      <IconChevronLeft />
-    </button>
 
-    <div class="flex flex-nowrap items-center mx-6">
-      <div class="w-4 mx-3">
-        <IconDotsHorizontal size="16px" v-show="!state.pageDisplayList.find(page=> page === 1)" />
+    <div class="relative inline-flex items-center">
+      <button class="bg-blue-400 p-1 text-white rounded m-2" @click="moveStart">
+        <IconChevronDoubleLeft />
+      </button>
+      <button class="bg-blue-400 p-1 text-white rounded m-2" @click="moveLeft">
+        <IconChevronLeft />
+      </button>
+
+      <div class="flex flex-nowrap items-center mx-6 w-[300px]">
+        <div class="w-4 mx-3">
+          <IconDotsHorizontal size="16px" v-show="!state.pageDisplayList.find(page=> page === 1)" />
+        </div>
+        <div
+            class="flex items-center justify-center rounded mx-2 hover:cursor-pointer border border-b-blue-300 min-w-7 aspect-square"
+            v-for="(page, index) in state.pageDisplayList"
+            :key="index"
+            :class="page === state.activePage ? 'bg-blue-300 text-white' : ''"
+            @click="editActivePage(page)"
+        >
+          <p>{{page}}</p>
+        </div>
+        <div class="w-4 mx-3">
+          <IconDotsHorizontal size="16px" v-show="!state.pageDisplayList.find(page=> page === state.pages)" />
+        </div>
       </div>
-      <div
-        class="flex items-center justify-center rounded mx-2 hover:cursor-pointer border border-b-blue-300 min-w-7 aspect-square"
-        v-for="(page, index) in state.pageDisplayList"
-        :key="index"
-        :class="page === state.activePage ? 'bg-blue-300 text-white' : ''"
-        @click="editActivePage(page)"
-      >
-        <p>{{page}}</p>
-      </div>
-      <div class="w-4 mx-3">
-        <IconDotsHorizontal size="16px" v-show="!state.pageDisplayList.find(page=> page === state.pages)" />
+
+      <button class="bg-blue-400 p-1 text-white rounded m-2" @click="moveRight">
+        <IconChevronRight />
+      </button>
+      <button class="bg-blue-400 p-1 text-white rounded m-2" @click="moveEnd">
+        <IconChevronDoubleRight />
+      </button>
+
+      <div class="absolute -right-[80px] flex">
+        <p class="mr-2">pages:</p>
+        <p>{{state.pages}}</p>
       </div>
     </div>
-
-    <button class="bg-blue-400 p-1 text-white rounded m-2" @click="moveRight">
-      <IconChevronRight />
-    </button>
-    <button class="bg-blue-400 p-1 text-white rounded m-2" @click="moveEnd">
-      <IconChevronDoubleRight />
-    </button>
-
-    <p class="mx-2">pages:</p>
-    <p>{{state.pages}}</p>
 
   </div>
 </template>

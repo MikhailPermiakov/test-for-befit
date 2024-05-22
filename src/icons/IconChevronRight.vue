@@ -7,7 +7,7 @@ import SvgIcon from '@jamescoyle/vue-icon';
 import { mdiChevronRight } from '@mdi/js';
 
 export default {
-  name: "my-component",
+  name: "icon-chevron-right",
   components: {
     SvgIcon
   },

@@ -1,57 +1,58 @@
 <template>
-  <LoaderComponent v-show="state.loaderGet" />
-
-  <div v-show="!state.loaderGet" class="p-2">
-    <ListComponent
-        title="список постов"
-        :list="list.general"
-        @emit-id="(value)=>postMoveList(value)"
-    >
-      <template v-slot:buttons="{ events: {upId} }">
-        <button class="bg-blue-400 p-1 text-white rounded mx-3" @click="upId(StatusEnum.LIKE)">
-          <IconThumbUpOutline />
-        </button>
-        <button class="bg-red-500 p-1 text-white rounded" @click="upId(StatusEnum.DISLIKE)">
-          <IconThumbDownOutline />
-        </button>
-      </template>
-    </ListComponent>
-
-    <PaginatorComponent
-        :length="state.listGeneralLength"
-        @emit-active-index="(value)=> pagination(value)"
-    />
-
-    <div class="grid grid-cols-2 gap-4 grid-rows-1">
+  <div>
+    <LoaderComponent v-show="state.loaderGet" />
+    <div class="p-2">
       <ListComponent
-          title="нравится"
-          title-style="text-blue-600"
-          shadow-style="c-shadow-blue-1"
-          :list="list.like"
+          title="список постов"
+          :list="list.general"
           @emit-id="(value)=>postMoveList(value)"
       >
         <template v-slot:buttons="{ events: {upId} }">
-          <button class="bg-red-500 p-1 text-white rounded ms-2" @click="upId(StatusEnum.GENERAL)">
-            <IconClose size="16px" />
+          <button class="bg-blue-400 p-1 text-white rounded mx-3" @click="upId(StatusEnum.LIKE)">
+            <IconThumbUpOutline />
+          </button>
+          <button class="bg-red-500 p-1 text-white rounded" @click="upId(StatusEnum.DISLIKE)">
+            <IconThumbDownOutline />
           </button>
         </template>
       </ListComponent>
 
-      <ListComponent
-          title="не нравится"
-          title-style="text-red-600"
-          shadow-style="c-shadow-red-1"
-          :list="list.dislike"
-          @emit-id="(value)=>postMoveList(value)"
-      >
-        <template v-slot:buttons="{ events: {upId} }">
-          <button class="bg-red-500 p-1 text-white rounded ms-2" @click="upId(StatusEnum.GENERAL)">
-            <IconClose size="16px"/>
-          </button>
-        </template>
-      </ListComponent>
+      <PaginatorComponent
+          :length="state.listGeneralLength"
+          @emit-active-index="(value)=> pagination(value)"
+      />
+
+      <div class="grid grid-cols-2 gap-4 grid-rows-1">
+        <ListComponent
+            title="нравится"
+            title-style="text-blue-600"
+            shadow-style="c-shadow-blue-1"
+            :list="list.like"
+            @emit-id="(value)=>postMoveList(value)"
+        >
+          <template v-slot:buttons="{ events: {upId} }">
+            <button class="bg-red-500 p-1 text-white rounded ms-2" @click="upId(StatusEnum.GENERAL)">
+              <IconClose size="16px" />
+            </button>
+          </template>
+        </ListComponent>
+
+        <ListComponent
+            title="не нравится"
+            title-style="text-red-600"
+            shadow-style="c-shadow-red-1"
+            :list="list.dislike"
+            @emit-id="(value)=>postMoveList(value)"
+        >
+          <template v-slot:buttons="{ events: {upId} }">
+            <button class="bg-red-500 p-1 text-white rounded ms-2" @click="upId(StatusEnum.GENERAL)">
+              <IconClose size="16px"/>
+            </button>
+          </template>
+        </ListComponent>
+
+      </div>
     </div>
-
   </div>
 </template>
 
@@ -85,14 +86,14 @@ export default defineComponent({
     const list = reactive<ListsInterface>({general: [], like: [], dislike: []});
 
     onMounted( async()=>{
+      state.loaderGet = true
       if (postList.value.length === 0){
-        state.loaderGet = true
         await getPostList();
-        state.loaderGet = false
       }
       if(postList.value.length !== 0 && idStatusList.value.length !== 0){
         await createLists();
       }
+      state.loaderGet = false
     })
 
     const createLists = async ()=> {

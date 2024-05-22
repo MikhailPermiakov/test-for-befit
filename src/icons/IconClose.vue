@@ -7,7 +7,7 @@ import SvgIcon from '@jamescoyle/vue-icon';
 import { mdiClose } from '@mdi/js';
 
 export default {
-  name: "my-component",
+  name: "icon-close",
   components: {
     SvgIcon
   },
