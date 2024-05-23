@@ -1,5 +1,4 @@
 # test-for-befit
-тестовое задание для одной кампании
 
 ## Project setup
 ```
