@@ -20,7 +20,7 @@ git commit -m 'deploy'
 # git push -f git@github.com:<USERNAME>/<USERNAME>.github.io.git master
 
 # если вы публикуете по адресу https://<USERNAME>.github.io/<REPO>
- git push -f https://mikhailpermiakov.github.io/test-for-work/
+ git push -f https://mikhailpermiakov.github.io/test-for-befit/
 
 # git@github.com:<USERNAME>/<REPO>.git master:gh-pages
 
