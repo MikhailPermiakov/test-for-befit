@@ -69,7 +69,7 @@ export default defineComponent({
       }
       if(state.activePage > state.pages) {
         state.activePage = state.pages;
-        createPageDisplayList();
+        // createPageDisplayList();
       }
       if(state.activePage === 1 || state.activePage === state.pages) createPageDisplayList();
     });

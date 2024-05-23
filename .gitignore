@@ -21,3 +21,9 @@ pnpm-debug.log*
 *.njsproj
 *.sln
 *.sw?
+
+# castom
+package.json
+/.github
+vue.config.js
+deploy.sh
