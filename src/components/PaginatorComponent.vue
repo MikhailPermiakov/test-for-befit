@@ -63,15 +63,20 @@ export default defineComponent({
     watch(()=>props.length, ()=> {
       if(props.length === 0) return
       if(props.length >= 5) {
-        state.pages = Math.floor(props.length / 5) ;
+        state.pages = Math.floor(props.length / 5);
+        if(props.length / 5 > state.pages) {
+          state.pages += 1
+        }
       } else {
         state.pages = 1
       }
       if(state.activePage > state.pages) {
         state.activePage = state.pages;
+        emitIndex();
+      }
+      if(state.activePage === 1 || state.activePage === state.pages) {
         createPageDisplayList();
       }
-      if(state.activePage === 1 || state.activePage === state.pages) createPageDisplayList();
     });
 
     const createPageDisplayList = ()=> {

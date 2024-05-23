@@ -86,8 +86,8 @@ export default defineComponent({
     const list = reactive<ListsInterface>({general: [], like: [], dislike: []});
 
     onMounted( async()=>{
-      state.loaderGet = true
       if (postList.value.length === 0){
+        state.loaderGet = true
         await getPostList();
       }
       if(postList.value.length !== 0 && idStatusList.value.length !== 0){
@@ -97,6 +97,7 @@ export default defineComponent({
     })
 
     const createLists = async ()=> {
+
       const temporaryListGeneral = ref<ApiPostInterface[]>([])
       list.general = [];
       list.like = [];
@@ -114,7 +115,7 @@ export default defineComponent({
       temporaryListGeneral.value = temporaryListGeneral.value.slice(state.activeIndex)
       let n = 0;
       while (n < 5) {
-        if(!temporaryListGeneral.value[n]) continue
+        if(!temporaryListGeneral.value[n]) break
         list.general.push({...temporaryListGeneral.value[n]})
         n++
       }
