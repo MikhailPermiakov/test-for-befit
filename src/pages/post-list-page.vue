@@ -127,7 +127,6 @@ export default defineComponent({
     }
 
     const pagination = (index: number)=> {
-      console.log('activeIndex', index)
       state.activeIndex = index
       createLists();
     }
